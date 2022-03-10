@@ -26,8 +26,8 @@ public class CustomerService {
         }
     }
 
-    public void update(Customer customer, Long id) {
-        Integer result = dao.update(customer, id);
+    public void update(Customer customer) {
+        Integer result = dao.update(customer);
         if (result != 1) {
             throw new IllegalStateException("oops could not update user");
         }

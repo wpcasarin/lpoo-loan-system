@@ -31,6 +31,7 @@ CREATE TABLE tellers
     `password` VARCHAR(100) NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT email UNIQUE (email),
-    CONSTRAINT cpf UNIQUE (cpf)
+    CONSTRAINT cpf UNIQUE (cpf),
+    CONSTRAINT login UNIQUE (login)
 );
 CREATE INDEX `role` ON tellers (`role`);

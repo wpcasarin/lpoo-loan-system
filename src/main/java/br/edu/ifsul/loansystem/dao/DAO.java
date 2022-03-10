@@ -7,7 +7,7 @@ public interface DAO<T> {
 
     Integer create(T t);
 
-    Integer update(T t, Long id);
+    Integer update(T t);
 
     Integer delete(Long id);
 

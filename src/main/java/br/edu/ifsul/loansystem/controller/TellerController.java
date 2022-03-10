@@ -21,9 +21,9 @@ public class TellerController {
         tellerService.create(teller);
     }
 
-    @PutMapping("{id}")
-    public void update(@RequestBody Teller teller, @PathVariable("id") Long id) {
-        tellerService.update(teller, id);
+    @PutMapping
+    public void update(@RequestBody Teller teller) {
+        tellerService.update(teller);
     }
 
     @DeleteMapping("{id}")

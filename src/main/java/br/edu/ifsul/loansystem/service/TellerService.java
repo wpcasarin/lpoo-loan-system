@@ -26,8 +26,8 @@ public class TellerService {
         }
     }
 
-    public void update(Teller teller, Long id) {
-        Integer result = dao.update(teller, id);
+    public void update(Teller teller) {
+        Integer result = dao.update(teller);
         if (result != 1) {
             throw new IllegalStateException("oops could not update user");
         }

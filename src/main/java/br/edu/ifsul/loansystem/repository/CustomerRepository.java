@@ -31,7 +31,7 @@ public class CustomerRepository implements DAO<Customer> {
     }
 
     @Override
-    public Integer update(Customer c, Long id) {
+    public Integer update(Customer c) {
         var sql = """
                 UPDATE customers 
                 SET name=?, last_name=?, role=?, cpf=?, email=?, birthdate=?, score=?, paycheck=?
@@ -39,7 +39,7 @@ public class CustomerRepository implements DAO<Customer> {
                 """;
         return jdbcTemplate.update(
                 sql,
-                c.name(), c.lastName(), c.role().toString(), c.cpf(), c.email(), c.birthdate(), c.score(), c.paycheck(), id);
+                c.name(), c.lastName(), c.role().toString(), c.cpf(), c.email(), c.birthdate(), c.score(), c.paycheck(), c.id());
     }
 
     @Override

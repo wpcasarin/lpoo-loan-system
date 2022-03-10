@@ -33,7 +33,7 @@ public class TellerRepository implements DAO<Teller> {
     }
 
     @Override
-    public Integer update(Teller t, Long id) {
+    public Integer update(Teller t) {
         var sql = """
                 UPDATE tellers 
                 SET name=?, last_name=?, role=?, cpf=?, email=?, birthdate=?, login=?, password=?
@@ -41,7 +41,7 @@ public class TellerRepository implements DAO<Teller> {
                 """;
         return jdbcTemplate.update(
                 sql,
-                t.name(), t.lastName(), t.role().toString(), t.cpf(), t.email(), t.birthdate(), t.login(), t.password(), id);
+                t.name(), t.lastName(), t.role().toString(), t.cpf(), t.email(), t.birthdate(), t.login(), t.password(), t.id());
     }
 
     @Override

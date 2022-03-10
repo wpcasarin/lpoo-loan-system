@@ -21,9 +21,9 @@ public class CustomerController {
         customerService.create(customer);
     }
 
-    @PutMapping("{id}")
-    public void update(@RequestBody Customer customer, @PathVariable("id") Long id) {
-        customerService.update(customer, id);
+    @PutMapping
+    public void update(@RequestBody Customer customer) {
+        customerService.update(customer);
     }
 
     @DeleteMapping("{id}")
