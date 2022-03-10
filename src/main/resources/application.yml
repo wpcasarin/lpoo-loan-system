@@ -2,9 +2,9 @@ app:
   datasource:
     main:
       driver-class-name: org.mariadb.jdbc.Driver
-      jdbc-url: jdbc:mariadb://loan:3306/db_loan
-      username: root
-      password: 'root'
+      jdbc-url: ${DB_URL}
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
       pool-size: 30
 
 server:
