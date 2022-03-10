@@ -20,8 +20,7 @@ public class CustomerRowMapper implements RowMapper<Customer> {
                 rs.getString("email"),
                 rs.getDate("birthdate").toLocalDate(),
                 rs.getInt("score"),
-                rs.getDouble("paycheck"),
-                rs.getLong("account_id")
+                rs.getDouble("paycheck")
         );
     }
 }

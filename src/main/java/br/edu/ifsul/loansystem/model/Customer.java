@@ -11,6 +11,5 @@ public record Customer(
         String email,
         LocalDate birthdate,
         Integer score,
-        Double paycheck,
-        Long accountId) {
+        Double paycheck) {
 }
