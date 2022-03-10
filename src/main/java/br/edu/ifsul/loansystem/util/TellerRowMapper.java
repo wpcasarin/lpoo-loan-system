@@ -19,6 +19,7 @@ public class TellerRowMapper implements RowMapper<Teller> {
                 rs.getString("cpf"),
                 rs.getString("email"),
                 rs.getDate("birthdate").toLocalDate(),
+                rs.getBoolean("is_admin"),
                 rs.getString("login"),
                 rs.getString("password")
         );
