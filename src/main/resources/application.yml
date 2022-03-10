@@ -1,0 +1,13 @@
+app:
+  datasource:
+    main:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://loan:3306/db_loan
+      username: root
+      password: 'root'
+      pool-size: 30
+
+server:
+  error:
+    include-binding-errors: always
+    include-message: always

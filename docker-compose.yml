@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+
+  db:
+    container_name: loan-system
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MARIADB_DATABASE: db_loan
+    volumes:
+      - ./database:/var/lib/mysql
+    networks:
+      mariadb-network:
+        ipv4_address: 172.22.128.8
+    ports:
+      - "3306:3306"
+
+networks:
+  mariadb-network:
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
