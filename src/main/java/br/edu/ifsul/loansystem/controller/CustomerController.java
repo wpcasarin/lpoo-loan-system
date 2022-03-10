@@ -21,7 +21,11 @@ public class CustomerController {
         customerService.create(customer);
     }
 
-    // TODO: Update customer
+    @PutMapping("{id}")
+    public void update(@RequestBody Customer customer, @PathVariable("id") Long id) {
+        customerService.update(customer, id);
+    }
+
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") Long id) {
         customerService.delete(id);
@@ -36,6 +40,5 @@ public class CustomerController {
     public Customer findById(@PathVariable("id") Long id) {
         return customerService.findById(id);
     }
-
 
 }

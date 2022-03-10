@@ -18,16 +18,16 @@ public class CustomerService {
         this.dao = dao;
     }
 
-    public List<Customer> findAll() {
-        return dao.findAll();
-    }
-
     public void create(Customer customer) {
         // TODO: check if user exists
         int result = dao.create(customer);
         if (result != 1) {
             throw new IllegalStateException("oops something went wrong");
         }
+    }
+
+    public void update(Customer customer, Long id) {
+        dao.update(customer, id);
     }
 
     public void delete(Long id) {
@@ -40,6 +40,10 @@ public class CustomerService {
         }, () -> {
             throw new NotFoundException(String.format("User with id %s not found", id));
         });
+    }
+
+    public List<Customer> findAll() {
+        return dao.findAll();
     }
 
     public Customer findById(Long id) {

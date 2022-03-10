@@ -30,13 +30,24 @@ public class CustomerRepository implements DAO<Customer> {
     }
 
     @Override
-    public Integer update(Customer customer, Long id) {
-        throw new UnsupportedOperationException("not implemented");
+    public Integer update(Customer c, Long id) {
+        var sql = """
+                UPDATE customers 
+                SET name=?, last_name=?, role=?, cpf=?, email=?, birthdate=?, score=?, paycheck=?
+                WHERE id = ?
+                """;
+        return jdbcTemplate.update(
+                sql,
+                c.name(), c.lastName(), c.role().toString(), c.cpf(), c.email(), c.birthdate(), c.score(), c.paycheck(), id);
     }
 
     @Override
     public Integer delete(Long id) {
-        throw new UnsupportedOperationException("not implemented");
+        var sql = """
+                DELETE FROM customers 
+                WHERE id = ?;
+                """;
+        return jdbcTemplate.update(sql, id);
     }
 
     @Override
@@ -51,7 +62,13 @@ public class CustomerRepository implements DAO<Customer> {
 
     @Override
     public Optional<Customer> findById(Long id) {
-        throw new UnsupportedOperationException("not implemented");
+        var sql = """
+                SELECT *
+                FROM customers
+                WHERE id = ?;
+                """;
+        return jdbcTemplate.query(sql, new CustomerRowMapper(), id)
+                .stream()
+                .findFirst();
     }
-
 }
