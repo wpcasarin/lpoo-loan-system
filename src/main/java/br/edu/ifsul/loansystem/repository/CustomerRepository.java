@@ -2,6 +2,7 @@ package br.edu.ifsul.loansystem.repository;
 
 import br.edu.ifsul.loansystem.dao.DAO;
 import br.edu.ifsul.loansystem.model.Customer;
+import br.edu.ifsul.loansystem.model.Role;
 import br.edu.ifsul.loansystem.util.CustomerRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,7 @@ public class CustomerRepository implements DAO<Customer> {
                 """;
         return jdbcTemplate.update(
                 sql,
-                c.name(), c.lastName(), c.role().toString(), c.cpf(), c.email(), c.birthdate(), c.score(), c.paycheck());
+                c.name(), c.lastName(), Role.CUSTOMER.toString(), c.cpf(), c.email(), c.birthdate(), c.score(), c.paycheck());
     }
 
     @Override
