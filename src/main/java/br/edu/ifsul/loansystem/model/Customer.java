@@ -12,5 +12,4 @@ public record Customer(
         LocalDate birthdate,
         Integer score,
         Double paycheck) {
-
 }

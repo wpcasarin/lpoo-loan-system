@@ -20,20 +20,23 @@ public class CustomerService {
 
     public void create(Customer customer) {
         // TODO: check if user exists
-        int result = dao.create(customer);
+        Integer result = dao.create(customer);
         if (result != 1) {
             throw new IllegalStateException("oops something went wrong");
         }
     }
 
     public void update(Customer customer, Long id) {
-        dao.update(customer, id);
+        Integer result = dao.update(customer, id);
+        if (result != 1) {
+            throw new IllegalStateException("oops could not update user");
+        }
     }
 
     public void delete(Long id) {
         Optional<Customer> customers = dao.findById(id);
         customers.ifPresentOrElse(customer -> {
-            int result = dao.delete(id);
+            Integer result = dao.delete(id);
             if (result != 1) {
                 throw new IllegalStateException("oops could not delete user");
             }
