@@ -55,7 +55,9 @@ public class CustomerRepository implements DAO<Customer> {
     public List<Customer> findAll() {
         var sql = """
                 SELECT *
-                FROM customers
+                FROM customers  
+                LEFT JOIN accounts 
+                ON customers.id = accounts.customer_id
                 LIMIT 100;
                 """;
         return jdbcTemplate.query(sql, new CustomerRowMapper());
@@ -65,8 +67,10 @@ public class CustomerRepository implements DAO<Customer> {
     public Optional<Customer> findById(Long id) {
         var sql = """
                 SELECT *
-                FROM customers
-                WHERE id = ?;
+                FROM customers  
+                LEFT JOIN accounts 
+                ON customers.id = accounts.customer_id          
+                WHERE customers.id = ?;
                 """;
         return jdbcTemplate.query(sql, new CustomerRowMapper(), id)
                 .stream()
