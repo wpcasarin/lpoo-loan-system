@@ -10,6 +10,7 @@ CREATE TABLE customers
     birthdate DATE        NOT NULL,
     score     INT         NOT NULL,
     paycheck  DOUBLE      NOT NULL,
+    teller_id BIGINT      NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT email UNIQUE (email),
     CONSTRAINT cpf UNIQUE (cpf)
@@ -35,3 +36,7 @@ CREATE TABLE tellers
     CONSTRAINT login UNIQUE (login)
 );
 CREATE INDEX `role` ON tellers (`role`);
+
+/* Relation 'tellers_customers' */
+ALTER TABLE customers
+    ADD CONSTRAINT tellers_customers FOREIGN KEY (teller_id) REFERENCES tellers (id);
