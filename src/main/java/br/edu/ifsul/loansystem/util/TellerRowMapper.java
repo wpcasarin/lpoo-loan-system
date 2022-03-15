@@ -1,17 +1,12 @@
 package br.edu.ifsul.loansystem.util;
 
-import br.edu.ifsul.loansystem.model.Account;
-import br.edu.ifsul.loansystem.model.Customer;
 import br.edu.ifsul.loansystem.model.Role;
 import br.edu.ifsul.loansystem.model.Teller;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Repository
 public class TellerRowMapper implements RowMapper<Teller> {
 
     @Override
@@ -27,7 +22,6 @@ public class TellerRowMapper implements RowMapper<Teller> {
                 rs.getBoolean("tellers.is_admin"),
                 rs.getString("tellers.login"),
                 rs.getString("tellers.password")
-//                customer
         );
     }
 }

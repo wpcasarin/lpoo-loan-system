@@ -13,7 +13,5 @@ public record Teller(
         LocalDate birthdate,
         Boolean isAdmin,
         String login,
-        String password
-//        List<Customer> customers
-) {
+        String password) {
 }
