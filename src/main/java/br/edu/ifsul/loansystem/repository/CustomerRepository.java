@@ -22,24 +22,41 @@ public class CustomerRepository implements DAO<Customer> {
     @Override
     public Integer create(Customer c) {
         var sql = """
-                INSERT INTO customers (name, last_name, role, cpf, email, birthdate, score, paycheck)
-                VALUES (?,?,?,?,?,?,?,?)
+                INSERT INTO customers (name, last_name, role, cpf, email, birthdate, score, paycheck, teller_id)
+                VALUES (?,?,?,?,?,?,?,?,?)
                 """;
         return jdbcTemplate.update(
                 sql,
-                c.name(), c.lastName(), Role.CUSTOMER.toString(), c.cpf(), c.email(), c.birthdate(), c.score(), c.paycheck());
+                c.name(),
+                c.lastName(),
+                Role.CUSTOMER.toString(),
+                c.cpf(),
+                c.email(),
+                c.birthdate(),
+                c.score(),
+                c.paycheck(),
+                c.tellerId());
     }
 
     @Override
     public Integer update(Customer c) {
         var sql = """
                 UPDATE customers 
-                SET name=?, last_name=?, role=?, cpf=?, email=?, birthdate=?, score=?, paycheck=?
+                SET name=?, last_name=?, role=?, cpf=?, email=?, birthdate=?, score=?, paycheck=?, teller_id=?
                 WHERE id = ?
                 """;
         return jdbcTemplate.update(
                 sql,
-                c.name(), c.lastName(), c.role().toString(), c.cpf(), c.email(), c.birthdate(), c.score(), c.paycheck(), c.id());
+                c.name(),
+                c.lastName(),
+                c.role().toString(),
+                c.cpf(),
+                c.email(),
+                c.birthdate(),
+                c.score(),
+                c.paycheck(),
+                c.tellerId(),
+                c.id());
     }
 
     @Override
@@ -69,7 +86,9 @@ public class CustomerRepository implements DAO<Customer> {
                 SELECT *
                 FROM customers  
                 LEFT JOIN accounts 
-                ON customers.id = accounts.customer_id          
+                ON customers.id = accounts.customer_id
+                LEFT JOIN tellers
+                ON customers.teller_id = tellers.id          
                 WHERE customers.id = ?;
                 """;
         return jdbcTemplate.query(sql, new CustomerRowMapper(), id)

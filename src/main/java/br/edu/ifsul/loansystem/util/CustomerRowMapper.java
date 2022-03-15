@@ -10,8 +10,6 @@ import java.sql.SQLException;
 
 public class CustomerRowMapper implements RowMapper<Customer> {
 
-
-
     @Override
     public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
         Account account = new Account(
@@ -20,15 +18,16 @@ public class CustomerRowMapper implements RowMapper<Customer> {
                 rs.getDouble("accounts.balance")
         );
         return new Customer(
-                rs.getLong("id"),
-                rs.getString("name"),
-                rs.getString("last_name"),
-                Role.valueOf(rs.getString("role")),
-                rs.getString("cpf"),
-                rs.getString("email"),
-                rs.getDate("birthdate").toLocalDate(),
-                rs.getInt("score"),
-                rs.getDouble("paycheck"),
+                rs.getLong("customers.id"),
+                rs.getString("customers.name"),
+                rs.getString("customers.last_name"),
+                Role.valueOf(rs.getString("customers.role")),
+                rs.getString("customers.cpf"),
+                rs.getString("customers.email"),
+                rs.getDate("customers.birthdate").toLocalDate(),
+                rs.getInt("customers.score"),
+                rs.getDouble("customers.paycheck"),
+                rs.getLong("teller_id"),
                 account.id() == 0 ? null : account
         );
     }

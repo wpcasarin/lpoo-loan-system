@@ -1,6 +1,7 @@
 package br.edu.ifsul.loansystem.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record Teller(
         Long id,
@@ -12,5 +13,7 @@ public record Teller(
         LocalDate birthdate,
         Boolean isAdmin,
         String login,
-        String password) {
+        String password
+//        List<Customer> customers
+) {
 }

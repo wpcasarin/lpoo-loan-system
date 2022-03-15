@@ -1,27 +1,33 @@
 package br.edu.ifsul.loansystem.util;
 
+import br.edu.ifsul.loansystem.model.Account;
+import br.edu.ifsul.loansystem.model.Customer;
 import br.edu.ifsul.loansystem.model.Role;
 import br.edu.ifsul.loansystem.model.Teller;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Repository
 public class TellerRowMapper implements RowMapper<Teller> {
 
     @Override
     public Teller mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Teller(
-                rs.getLong("id"),
-                rs.getString("name"),
-                rs.getString("last_name"),
-                Role.valueOf(rs.getString("role")),
-                rs.getString("cpf"),
-                rs.getString("email"),
-                rs.getDate("birthdate").toLocalDate(),
-                rs.getBoolean("is_admin"),
-                rs.getString("login"),
-                rs.getString("password")
+                rs.getLong("tellers.id"),
+                rs.getString("tellers.name"),
+                rs.getString("tellers.last_name"),
+                Role.valueOf(rs.getString("tellers.role")),
+                rs.getString("tellers.cpf"),
+                rs.getString("tellers.email"),
+                rs.getDate("tellers.birthdate").toLocalDate(),
+                rs.getBoolean("tellers.is_admin"),
+                rs.getString("tellers.login"),
+                rs.getString("tellers.password")
+//                customer
         );
     }
 }

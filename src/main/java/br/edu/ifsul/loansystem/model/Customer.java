@@ -12,5 +12,6 @@ public record Customer(
         LocalDate birthdate,
         Integer score,
         Double paycheck,
+        Long tellerId,
         Account account) {
 }

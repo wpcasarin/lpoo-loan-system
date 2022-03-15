@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/tellers")
+@RequestMapping(path = "api/teller")
 public class TellerController {
 
     private final TellerService tellerService;

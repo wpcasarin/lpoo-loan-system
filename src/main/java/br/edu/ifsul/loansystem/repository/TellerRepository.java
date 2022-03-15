@@ -29,7 +29,14 @@ public class TellerRepository implements DAO<Teller> {
                 """;
         return jdbcTemplate.update(
                 sql,
-                t.name(), t.lastName(), Role.TELLER.toString(), t.cpf(), t.email(), t.birthdate(), t.login(), t.password());
+                t.name(),
+                t.lastName(),
+                Role.TELLER.toString(),
+                t.cpf(),
+                t.email(),
+                t.birthdate(),
+                t.login(),
+                t.password());
     }
 
     @Override
@@ -41,7 +48,15 @@ public class TellerRepository implements DAO<Teller> {
                 """;
         return jdbcTemplate.update(
                 sql,
-                t.name(), t.lastName(), t.role().toString(), t.cpf(), t.email(), t.birthdate(), t.login(), t.password(), t.id());
+                t.name(),
+                t.lastName(),
+                t.role().toString(),
+                t.cpf(),
+                t.email(),
+                t.birthdate(),
+                t.login(),
+                t.password(),
+                t.id());
     }
 
     @Override
