@@ -15,7 +15,7 @@ public class LoanRowMapper implements RowMapper<Loan> {
                 rs.getDouble("loans.borrowed"),
                 rs.getDouble("loans.to_receive"),
                 rs.getDate("loans.borrowed_at").toLocalDate(),
-                rs.getDate("loans.expires+at").toLocalDate(),
+                rs.getDate("loans.expires_at").toLocalDate(),
                 rs.getLong("loans.account_id")
         );
     }
