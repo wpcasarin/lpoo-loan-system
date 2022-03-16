@@ -6,7 +6,7 @@ CREATE TABLE accounts
     balance     DOUBLE NOT NULL,
     loan_tax    DOUBLE NOT NULL,
     loan_limit  DOUBLE NOT NULL,
-    PRIMARY KEY (id, customer_id),
+    PRIMARY KEY (id),
     CONSTRAINT customer_id UNIQUE (customer_id)
 );
 
