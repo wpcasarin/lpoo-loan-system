@@ -3,6 +3,7 @@ package br.edu.ifsul.loansystem.util;
 import br.edu.ifsul.loansystem.model.Account;
 import br.edu.ifsul.loansystem.model.Customer;
 import br.edu.ifsul.loansystem.model.Role;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -10,15 +11,17 @@ import java.sql.SQLException;
 
 public class CustomerRowMapper implements RowMapper<Customer> {
 
+    private final JdbcTemplate jdbcTemplate;
+
+    public CustomerRowMapper(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Override
     public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Account account = new Account(
-                rs.getLong("accounts.id"),
-                rs.getLong("accounts.customer_id"),
-                rs.getDouble("accounts.balance"),
-                rs.getDouble("accounts.loan_tax"),
-                rs.getDouble("accounts.loan_limit")
-        );
+        AccountRowMapper accountMapper = new AccountRowMapper(jdbcTemplate);
+        Account account = accountMapper.mapRow(rs, rowNum);
+        assert account != null;
         return new Customer(
                 rs.getLong("customers.id"),
                 rs.getString("customers.name"),

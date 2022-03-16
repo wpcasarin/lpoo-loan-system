@@ -77,7 +77,7 @@ public class CustomerRepository implements DAO<Customer> {
                 ON customers.id = accounts.customer_id
                 LIMIT 100;
                 """;
-        return jdbcTemplate.query(sql, new CustomerRowMapper());
+        return jdbcTemplate.query(sql, new CustomerRowMapper(jdbcTemplate));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class CustomerRepository implements DAO<Customer> {
                 ON customers.teller_id = tellers.id\040\040\040\040\040\040\040\040\040\040
                 WHERE customers.id = ?;
                 """;
-        return jdbcTemplate.query(sql, new CustomerRowMapper(), id)
+        return jdbcTemplate.query(sql, new CustomerRowMapper(jdbcTemplate), id)
                 .stream()
                 .findFirst();
     }

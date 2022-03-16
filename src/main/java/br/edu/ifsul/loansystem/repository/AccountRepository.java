@@ -63,7 +63,7 @@ public class AccountRepository implements DAO<Account> {
                 FROM accounts
                 LIMIT 100;
                 """;
-        return jdbcTemplate.query(sql, new AccountRowMapper());
+        return jdbcTemplate.query(sql, new AccountRowMapper(jdbcTemplate));
     }
 
     @Override
@@ -73,7 +73,7 @@ public class AccountRepository implements DAO<Account> {
                 FROM accounts
                 WHERE id = ?;
                 """;
-        return jdbcTemplate.query(sql, new AccountRowMapper(), id)
+        return jdbcTemplate.query(sql, new AccountRowMapper(jdbcTemplate), id)
                 .stream()
                 .findFirst();
     }

@@ -26,7 +26,7 @@ public class TellerRowMapper implements RowMapper<Teller> {
                 ON customers.id = accounts.customer_id
                 WHERE customers.teller_id = ?;
                 """;
-        return this.jdbcTemplate.query(sql, new CustomerRowMapper(), id);
+        return this.jdbcTemplate.query(sql, new CustomerRowMapper(jdbcTemplate), id);
     }
 
     @Override
