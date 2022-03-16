@@ -40,7 +40,7 @@ public class TellerRepository implements DAO<Teller> {
     @Override
     public Integer update(Teller t) {
         var sql = """
-                UPDATE tellers 
+                UPDATE tellers\040
                 SET name=?, last_name=?, role=?, cpf=?, email=?, birthdate=?, login=?, password=?
                 WHERE id = ?
                 """;
@@ -60,7 +60,7 @@ public class TellerRepository implements DAO<Teller> {
     @Override
     public Integer delete(Long id) {
         var sql = """
-                DELETE FROM tellers 
+                DELETE FROM tellers\040
                 WHERE id = ?;
                 """;
         return jdbcTemplate.update(sql, id);
@@ -73,17 +73,17 @@ public class TellerRepository implements DAO<Teller> {
                 FROM tellers
                 LIMIT 100;
                 """;
-        return jdbcTemplate.query(sql, new TellerRowMapper());
+        return jdbcTemplate.query(sql, new TellerRowMapper(jdbcTemplate));
     }
 
     @Override
     public Optional<Teller> findById(Long id) {
         var sql = """
-                SELECT *
+                SELECT  *
                 FROM tellers
                 WHERE id = ?;
                 """;
-        return jdbcTemplate.query(sql, new TellerRowMapper(), id)
+        return jdbcTemplate.query(sql, new TellerRowMapper(jdbcTemplate), id)
                 .stream()
                 .findFirst();
     }
