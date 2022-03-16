@@ -21,24 +21,30 @@ public class AccountRepository implements DAO<Account> {
     @Override
     public Integer create(Account a) {
         var sql = """
-                INSERT INTO accounts (customer_id, balance)
-                VALUES (?,?);
+                INSERT INTO accounts (customer_id, balance, loan_tax, loan_limit)
+                VALUES (?,?,?,?);
                 """;
         return jdbcTemplate.update(
                 sql,
-                a.customerId(), a.balance());
+                a.customerId(),
+                a.balance(),
+                a.loanTax(),
+                a.loanLimit());
     }
 
     @Override
     public Integer update(Account a) {
         var sql = """
                 UPDATE accounts
-                SET balance = ?
+                SET balance = ?, loan_tax = ?, loan_limit = ?
                 WHERE id = ?
                 """;
         return jdbcTemplate.update(
                 sql,
-                a.balance(), a.id());
+                a.balance(),
+                a.loanTax(),
+                a.loanLimit(),
+                a.id());
     }
 
     @Override

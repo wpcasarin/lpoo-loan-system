@@ -4,6 +4,8 @@ CREATE TABLE accounts
     id          BIGINT NOT NULL AUTO_INCREMENT,
     customer_id BIGINT NOT NULL,
     balance     DOUBLE NOT NULL,
+    loan_tax    DOUBLE NOT NULL,
+    loan_limit  DOUBLE NOT NULL,
     PRIMARY KEY (id, customer_id),
     CONSTRAINT customer_id UNIQUE (customer_id)
 );

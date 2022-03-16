@@ -41,7 +41,7 @@ public class CustomerRepository implements DAO<Customer> {
     @Override
     public Integer update(Customer c) {
         var sql = """
-                UPDATE customers 
+                UPDATE customers\040
                 SET name=?, last_name=?, role=?, cpf=?, email=?, birthdate=?, score=?, paycheck=?, teller_id=?
                 WHERE id = ?
                 """;
@@ -62,7 +62,7 @@ public class CustomerRepository implements DAO<Customer> {
     @Override
     public Integer delete(Long id) {
         var sql = """
-                DELETE FROM customers 
+                DELETE FROM customers\040
                 WHERE id = ?;
                 """;
         return jdbcTemplate.update(sql, id);
@@ -72,8 +72,8 @@ public class CustomerRepository implements DAO<Customer> {
     public List<Customer> findAll() {
         var sql = """
                 SELECT *
-                FROM customers  
-                LEFT JOIN accounts 
+                FROM customers\040\040
+                LEFT JOIN accounts\040
                 ON customers.id = accounts.customer_id
                 LIMIT 100;
                 """;
@@ -84,11 +84,11 @@ public class CustomerRepository implements DAO<Customer> {
     public Optional<Customer> findById(Long id) {
         var sql = """
                 SELECT *
-                FROM customers  
-                LEFT JOIN accounts 
+                FROM customers\040
+                LEFT JOIN accounts\040
                 ON customers.id = accounts.customer_id
                 LEFT JOIN tellers
-                ON customers.teller_id = tellers.id          
+                ON customers.teller_id = tellers.id\040\040\040\040\040\040\040\040\040\040
                 WHERE customers.id = ?;
                 """;
         return jdbcTemplate.query(sql, new CustomerRowMapper(), id)

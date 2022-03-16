@@ -14,8 +14,10 @@ public class CustomerRowMapper implements RowMapper<Customer> {
     public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
         Account account = new Account(
                 rs.getLong("accounts.id"),
-                rs.getLong("customers.id"),
-                rs.getDouble("accounts.balance")
+                rs.getLong("accounts.customer_id"),
+                rs.getDouble("accounts.balance"),
+                rs.getDouble("accounts.loan_tax"),
+                rs.getDouble("accounts.loan_limit")
         );
         return new Customer(
                 rs.getLong("customers.id"),
@@ -27,7 +29,7 @@ public class CustomerRowMapper implements RowMapper<Customer> {
                 rs.getDate("customers.birthdate").toLocalDate(),
                 rs.getInt("customers.score"),
                 rs.getDouble("customers.paycheck"),
-                rs.getLong("teller_id"),
+                rs.getLong("customers.teller_id"),
                 account.id() == 0 ? null : account
         );
     }
