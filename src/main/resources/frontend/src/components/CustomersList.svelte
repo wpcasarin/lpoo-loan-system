@@ -1,5 +1,7 @@
 <script script>
-  import { API_URL, currentUser } from '../stores';
+  import { goto } from '$app/navigation';
+
+  import { API_URL, currentCustomer, currentUser } from '../stores';
 
   const fetchCustomers = async () => {
     const telerId = $currentUser.id;
@@ -10,6 +12,11 @@
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleLoanButton = (customer) => {
+    $currentCustomer = customer;
+    goto('/loan');
   };
 </script>
 
@@ -22,6 +29,7 @@
       <th scope="col">CPF</th>
       <th scope="col">Score</th>
       <th scope="col">Paycheck</th>
+      <th scope="col">#</th>
     </tr>
   </thead>
   <tbody>
@@ -34,8 +42,17 @@
           <td>{customer.cpf}</td>
           <td>{customer.score}</td>
           <td>{customer.paycheck}</td>
+          <td>
+            <button on:click="{() => handleLoanButton(customer)}">Loan</button>
+          </td>
         </tr>
       {/each}
     {/await}
   </tbody>
 </table>
+
+<style>
+  button {
+    padding: 0.1em 1.2em;
+  }
+</style>

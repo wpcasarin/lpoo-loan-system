@@ -28,7 +28,7 @@ public class LoanRepository implements DAO<Loan> {
                 sql,
                 l.borrowed(),
                 l.toReceive(),
-                l.borrowed(),
+                l.borrowedAt(),
                 l.expiresAt(),
                 l.accountId());
     }
@@ -44,7 +44,7 @@ public class LoanRepository implements DAO<Loan> {
                 sql,
                 l.borrowed(),
                 l.toReceive(),
-                l.borrowed(),
+                l.borrowedAt(),
                 l.expiresAt(),
                 l.id());
     }

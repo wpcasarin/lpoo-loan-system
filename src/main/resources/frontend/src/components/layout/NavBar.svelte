@@ -26,7 +26,7 @@
     {:else}
       <li><a href="/">Home</a></li>
       <li><a href="/customers">Customers</a></li>
-      <li><span on:click={handleLogout} role="button" class="contrast">Logout</span></li>
+      <li><span on:click="{handleLogout}" role="button" class="contrast">Logout</span></li>
     {/if}
   </ul>
 </nav>
@@ -45,5 +45,9 @@
     justify-content: flex-start;
     align-items: center;
     padding: 0;
+  }
+  nav ul:last-of-type {
+    display: flex;
+    gap: 1rem;
   }
 </style>
