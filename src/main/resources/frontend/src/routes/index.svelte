@@ -20,3 +20,10 @@
   </section>
 </main>
 <Footer />
+
+<style>
+  img {
+    display: block;
+    border-radius: 1rem;
+  }
+</style>

@@ -1,4 +1,5 @@
 <script>
+  import FaDollarSign from 'svelte-icons/fa/FaDollarSign.svelte';
   import { goto } from '$app/navigation';
 
   import { currentUser } from '../../stores';
@@ -13,7 +14,10 @@
 
 <nav class="container">
   <ul>
-    <li><strong>{`${currentUserName ? currentUserName : ''}`}</strong></li>
+    <li>
+      <div class="icon"><FaDollarSign /></div>
+      <strong>{`${currentUserName ? currentUserName : 'LoanSystem'}`}</strong>
+    </li>
   </ul>
   <ul>
     {#if !$currentUser}
@@ -28,7 +32,18 @@
 </nav>
 
 <style>
+  .icon {
+    color: var(--primary);
+    width: 32px;
+    height: 32px;
+  }
   nav {
     height: 72px;
+  }
+  nav li:first-of-type {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
   }
 </style>
