@@ -2,12 +2,11 @@
   import FaDollarSign from 'svelte-icons/fa/FaDollarSign.svelte';
   import { goto } from '$app/navigation';
 
-  import { currentUser } from '../../stores';
-
-  const currentUserName = $currentUser.name;
+  import { currentCustomer, currentUser } from '../../stores';
 
   const handleLogout = () => {
     $currentUser = '';
+    $currentCustomer = '';
     goto('/');
   };
 </script>
@@ -16,13 +15,13 @@
   <ul>
     <li>
       <div class="icon"><FaDollarSign /></div>
-      <strong>{`${currentUserName ? currentUserName : 'LoanSystem'}`}</strong>
+      <strong>{`${$currentUser.name ? $currentUser.name : 'LoanSystem'}`}</strong>
     </li>
   </ul>
   <ul>
     {#if !$currentUser}
       <li><a href="/login" role="button" class="secondary outline">Sign in</a></li>
-      <li><a href="#" role="button">Sign up</a></li>
+      <li><a href="/signup" role="button">Sign up</a></li>
     {:else}
       <li><a href="/">Home</a></li>
       <li><a href="/customers">Customers</a></li>
