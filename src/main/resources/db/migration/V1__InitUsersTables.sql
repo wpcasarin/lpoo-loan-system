@@ -27,7 +27,6 @@ CREATE TABLE tellers
     cpf        VARCHAR(14)  NOT NULL,
     email      VARCHAR(50)  NOT NULL,
     birthdate  DATE         NOT NULL,
-    is_admin   BOOLEAN      NOT NULL DEFAULT FALSE,
     login      VARCHAR(50)  NOT NULL,
     `password` VARCHAR(100) NOT NULL,
     PRIMARY KEY (id),

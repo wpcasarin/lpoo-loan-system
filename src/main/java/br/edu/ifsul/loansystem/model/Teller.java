@@ -11,7 +11,6 @@ public record Teller(
         String cpf,
         String email,
         LocalDate birthdate,
-        Boolean isAdmin,
         String login,
         String password,
         List<Customer> customers) {

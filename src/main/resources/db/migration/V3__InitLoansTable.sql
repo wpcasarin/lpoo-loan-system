@@ -1,5 +1,4 @@
 /* Table 'loans' */
-/* Table 'loans' */
 CREATE TABLE loans
 (
     id          BIGINT NOT NULL AUTO_INCREMENT,

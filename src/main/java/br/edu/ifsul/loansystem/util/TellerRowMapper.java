@@ -40,7 +40,6 @@ public class TellerRowMapper implements RowMapper<Teller> {
                 rs.getString("tellers.cpf"),
                 rs.getString("tellers.email"),
                 rs.getDate("tellers.birthdate").toLocalDate(),
-                rs.getBoolean("tellers.is_admin"),
                 rs.getString("tellers.login"),
                 rs.getString("tellers.password"),
                 customers
