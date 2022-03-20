@@ -73,7 +73,7 @@ public class CustomerRepository implements DAO<Customer> {
         var sql = """
                 SELECT *
                 FROM customers\040
-                JOIN accounts\040
+                LEFT JOIN accounts\040
                 ON customers.id = accounts.customer_id
                 LIMIT 100;
                 """;
@@ -85,7 +85,7 @@ public class CustomerRepository implements DAO<Customer> {
         var sql = """
                 SELECT *
                 FROM customers\040
-                JOIN accounts\040
+                LEFT JOIN accounts\040
                 ON customers.id = accounts.customer_id
                 WHERE customers.id = ?;
                 """;
