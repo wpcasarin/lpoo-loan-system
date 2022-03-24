@@ -8,4 +8,4 @@
 <main class="container">
   <SignUpForm />
 </main>
-<!-- <Footer /> -->
+<Footer />

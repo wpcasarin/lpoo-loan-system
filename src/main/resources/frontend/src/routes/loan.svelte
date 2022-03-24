@@ -3,8 +3,20 @@
   import GiHistogram from 'svelte-icons/gi/GiHistogram.svelte';
 
   import NavBar from '../components/layout/NavBar.svelte';
+  import Footer from '../components/layout/Footer.svelte';
   import LoanAccordion from '../components/LoanAccordion.svelte';
-  import { currentCustomer } from '../stores';
+  import { API_URL, currentCustomer } from '../stores';
+
+  const fetchCustomer = async () => {
+    try {
+      const response = await fetch(`${$API_URL}/customer/${$currentCustomer.id}`);
+      $currentCustomer = await response.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  $: $currentCustomer = fetchCustomer();
 </script>
 
 <NavBar />
@@ -37,6 +49,7 @@
     <h1 class="warning">User without account</h1>
   {/if}
 </main>
+<Footer />
 
 <style>
   h2,
